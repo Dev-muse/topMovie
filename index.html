@@ -15,16 +15,16 @@
     />
     <!-- css stylesheet -->
     <link rel="stylesheet" href="style.css" />
-    <title>Top movie</title>
+    <title>Top Movie - compare movies and find the top movie</title>
   </head>
   <body>
     <section class="hero is-link is-bold">
       <div class="hero-body">
         <div class="container">
           <h1 class="title has-text-centered	">
-            Top movie
+            Top Movie
             <span class="icon">
-              <i class="fas fa-film"></i>
+              <i class="fas fa-vr-cardboard"></i>
             </span>
           </h1>
         </div>
@@ -34,12 +34,23 @@
 
     <div class="container">
 
-      <!-- widget goes here -->
-     <div class="autocomplete"></div>
-      
-     <!-- movie summary -->
-     <div id="summary"></div>
-     
+      <div class="columns">
+        <div class="column">
+          <div id="left-autocomplete"></div>
+          <div class="left-summary"></div>
+        </div>
+        <div class="column">
+          <div id="right-autocomplete"></div>
+          <div class="right-summary"></div>
+        </div>
+      </div>
+
+      <div class="notification column is-link is-half tutorial">
+        <h1 class="title">Search For A Movie</h1>
+        <p class="subtitle">We will compare both movie titles you searched for and tell you which one is best.</p>
+
+      </div>
+
     </div>
 
 
