@@ -1,17 +1,10 @@
-const fetchData = async searchTerm => {
-  const {data} = await axios.get('http://www.omdbapi.com/', {
-    params: {
-      apikey: 'd9835cc5',
-      s: searchTerm
-    }
-  });
 
-  if (data.Error) {
-    return [];
-  }
-
-  return data.Search;
-};
+// required config object contents (createAutoComplete):
+// root : where to render autocomplete to on page
+// renderOption: how to display individual list items HTML
+// onOptionSelect: what ahppens when list item is clicked
+// inputValue: what to fill search input with for follow up api request
+// fetchData: how to fetch list data from api 
 
  createAutoComplete({
    root: document.querySelector('.autocomplete'),
@@ -22,12 +15,33 @@ const fetchData = async searchTerm => {
     ${movie.Title} (${movie.Year})
     `
 
+   },
+   onOptionSelect(movie){
+      onMovieSelect(movie)
+   },
+   inputValue(movie){
+     return movie.Title
+   },
+   async fetchData(searchTerm){
+    const {data} = await axios.get('http://www.omdbapi.com/', {
+      params: {
+        apikey: 'd9835cc5',
+        s: searchTerm
+      }
+    });
+  
+    if (data.Error) {
+      return [];
+    }
+  
+    return data.Search;
+
    }
  })
 
  
 
-// helper function for followup request
+// helper function for followup API request
 
 const onMovieSelect = async ({imdbID})=>{
   const {data} = await axios.get('http://www.omdbapi.com/', {
